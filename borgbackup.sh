@@ -1,5 +1,3 @@
 #!/bin/bash
 
-echo "CIAO!"
-borg --version
-echo "$(date): executed script" >> /var/log/cron.log 2>&1
+echo "$(date): executed script ($BORG_PASSPHRASE)" >> /var/log/cron.log 2>&1
