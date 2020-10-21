@@ -4,7 +4,6 @@ ARG BORG_PASSPHRASE
 
 ENV BORG_PASSPHRASE $BORG_PASSPHRASE
 
-
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y cron python3-dev libssl-dev openssl libacl1-dev libacl1 build-essential && \
