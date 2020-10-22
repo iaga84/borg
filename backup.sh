@@ -4,6 +4,7 @@ set -euo pipefail
 
 BORG_LOCATION="/borgbackup-database/borgbackup"
 RCLONE_SOURCE="/borgbackup-database"
+RCLONE_CONFIG="/borgbackup-database/rclone.conf"
 RCLONE_REMOTE_NAME="b2"
 B2_BUCKET_NAME="hoana-borgbackup"
 
@@ -28,8 +29,8 @@ if pgrep rclone > /dev/null; then
   exit 0
 fi
 
-rclone sync "${RCLONE_SOURCE}" "${RCLONE_REMOTE_NAME}":"${B2_BUCKET_NAME}"
-rclone cleanup "${RCLONE_REMOTE_NAME}":"${B2_BUCKET_NAME}"
+rclone sync --config="${RCLONE_CONFIG}" "${RCLONE_SOURCE}" "${RCLONE_REMOTE_NAME}":"${B2_BUCKET_NAME}"
+rclone cleanup --config="${RCLONE_CONFIG}" "${RCLONE_REMOTE_NAME}":"${B2_BUCKET_NAME}"
 
 echo "Backblaze sync finished"
 
