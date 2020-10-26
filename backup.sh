@@ -41,7 +41,7 @@ if pgrep rclone > /dev/null; then
   exit 0
 fi
 
-rclone sync --config="${RCLONE_CONFIG}" "${RCLONE_SOURCE}" "${RCLONE_REMOTE_NAME}":"${B2_BUCKET_NAME}"
+rclone sync --config="${RCLONE_CONFIG}" --bwlimit 0.275M "${RCLONE_SOURCE}" "${RCLONE_REMOTE_NAME}":"${B2_BUCKET_NAME}"
 
 echo "$(date): rclone sync completed, starting rclone cleanup" >> /var/log/cron.log 2>&1
 
