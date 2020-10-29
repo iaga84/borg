@@ -12,10 +12,12 @@ RUN apt-get update && \
     curl https://rclone.org/install.sh | bash
 
 COPY crontab /etc/cron.d/simple-cron
+COPY entrypoint.sh /
 COPY backup.sh /
 
 RUN chmod +x /backup.sh
+RUN chmod +x /entrypoint.sh
 RUN chmod 0644 /etc/cron.d/simple-cron
 RUN touch /var/log/cron.log
 
-CMD cron && tail -f /var/log/cron.log
+CMD ["/entrypoint.sh"]
