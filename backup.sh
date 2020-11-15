@@ -29,6 +29,8 @@ archive_name="borgbackup-$(date -Iseconds | cut -d '+' -f 1)"
   "${BORG_LOCATION}"::"${archive_name}" \
   /borgbackup-ale \
   /borgbackup-zai \
+  /appdata \
+  /nextcloud \
   &> "${LOG_FILE}"
 
 echo "$(date): borgbackup completed, starting rclone" >> "${LOG_FILE}" 2>&1
